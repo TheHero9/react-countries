@@ -29,6 +29,7 @@ function App() {
           setFlag(data[0].flags.png);
           setPopulation(data[0].population)
           setCapital(data[0].capital)
+          setClicked(true)
           
        })
        .catch((err) => {
@@ -40,7 +41,7 @@ function App() {
 //Submit button
 function Submit(){
   setInput(value)
-  setClicked(true)
+  
   
 }
    
