@@ -8,25 +8,23 @@ import Data from "./Components/Data"
 function App() {
 
 
-
+//Inputs/values
   const [input, setInput] = useState("")
   const [value, setValue] = useState("")
   const [clicked, setClicked] = useState(false)
   
-
+//Data for the country
   const [flag, setFlag] = useState(null);
   const [nameOf, setName] = useState(null);
   const [capital, setCapital] = useState(null)
   const [population, setPopulation] = useState(null)
 
  
+  // Render Country
   useEffect(() => {
     fetch(`https://restcountries.com/v3.1/name/${input}`)
        .then((response) => response.json())
        .then((data) => {
-        
-          
-          
           setName(data[0].name.common);
           setFlag(data[0].flags.png);
           setPopulation(data[0].population)
@@ -39,7 +37,7 @@ function App() {
  }, [input])
   
 
-
+//Submit button
 function Submit(){
   setInput(value)
   setClicked(true)
@@ -49,6 +47,7 @@ function Submit(){
 
   return (
     <div className="App">
+
       <input className="input" type="text" placeholder="Enter Country Name" onChange={(e) => setValue(e.target.value)} />
       <button className="button" onClick={Submit}>Submit</button>
       
@@ -59,8 +58,6 @@ function Submit(){
         capital={capital}
         state={clicked} />
 
-
-      
     </div>
   );
 }
