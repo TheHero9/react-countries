@@ -75,28 +75,18 @@ img {
   img {
     width: 30%;
   }
-<<<<<<< HEAD
+
 
   .button {
     margin-top: 10px;
   }
-=======
-	
+
+
 	.button {
 	margin-top: 20px;
 	}
-	  
->>>>>>> 09a4446e2e9c67c27ff47364b0caa7267f1d73c1
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 
 
