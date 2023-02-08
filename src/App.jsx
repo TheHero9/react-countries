@@ -29,7 +29,7 @@ function App() {
   // Render Country
   useEffect(() => {
 
-
+    !input ? console.log("No country") :
     fetch(`https://restcountries.com/v3.1/name/${input}`)
        .then((response) => response.json())
        .then((data) => {
