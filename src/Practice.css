@@ -1,0 +1,12 @@
+.practice{
+    border: 2px solid red !important;
+    margin: 10px;
+    /* color: blue; */
+    height: auto;
+    text-align: center;
+}
+
+.container-practice .col{
+    margin: 20px;
+
+}

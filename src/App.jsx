@@ -1,9 +1,13 @@
 import React from "react"
 import './App.css';
+import './Practice.css';
 import {useState, useEffect} from "react"
 import { hasSelectionSupport } from "@testing-library/user-event/dist/utils";
 import Data from "./Components/Data"
+import Practice from "./Components/Practice";
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+var randomCountry = require('random-country');
 
 function App() {
 
@@ -19,9 +23,13 @@ function App() {
   const [capital, setCapital] = useState(null)
   const [population, setPopulation] = useState(null)
 
+
+  const [flag2, setFlag2] = useState(null);
  
   // Render Country
   useEffect(() => {
+
+
     fetch(`https://restcountries.com/v3.1/name/${input}`)
        .then((response) => response.json())
        .then((data) => {
@@ -41,12 +49,11 @@ function App() {
 //Submit button
 function Submit(){
   setInput(value)
-  
-  
 }
    
 
   return (
+    <>
     <div className="App">
 
       <input className="input" type="text" placeholder="Enter Country Name" onChange={(e) => setValue(e.target.value)} />
@@ -60,6 +67,8 @@ function Submit(){
         state={clicked} />
 
     </div>
+    <Practice/>
+    </>
   );
 }
 
