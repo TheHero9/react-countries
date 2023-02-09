@@ -46,45 +46,50 @@ const Practice = function(){
            .then((data) => {
               setFakeFlag2(data[0].flags.png);  
            })
-
-        //    console.log(country)
            
      }, [country])
 
-     let arrayFlags = []
-     let randomizedFlags = [2,4,5]
+
+     const [arrayFlags, setArrayFlags] = useState([])
+     const [random1, setRandom1] = useState('')
+     const [random2, setRandom2] = useState('')
+     const [random3, setRandom3] = useState('')
 
      useEffect(() => {
-         Randomize(arrayFlags)
-        // console.log(randomizedFlags)
+        setArrayFlags([])
 
-        //  console.log(arrayFlags)
-        }, [country])
+        arrayFlags.push(flag, fakeFlag1, fakeFlag2)
+
+        Randomize(arrayFlags)
+        setRandom1(arrayFlags[0])
+        setRandom2(arrayFlags[1])
+        setRandom3(arrayFlags[2])
+        
+
+        }, [flag])
 
     
     function Randomize(array){
-        // for (var i = array.length - 1; i > 0; i--) {
-        //     var j = Math.floor(Math.random() * (i + 1));
-        //     var temp = array[i];
-        //     array[i] = array[j];
-        //     array[j] = temp;
-        // }
-
-        arrayFlags.push(1)
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
     }
 
+
     function GenerateCountry(){
+
         setCountry(randomCountry())
         setFake1(randomCountry())
         setFake2(randomCountry())
 
+       
+
     }
 
-    function ArrayPush(){
-        randomizedFlags = []
-        randomizedFlags.push(2)
-        // console.log(randomizedFlags)
-    }
+
 
     return(
         <>
@@ -93,20 +98,20 @@ const Practice = function(){
                 <h3>Score: {score}</h3>
                 <h3>Flag of {name}:</h3>
 
-                <Button onClick={(e) => ArrayPush()}>Array 1</Button> <br></br>
+              
 
                 <Button onClick={(e) => GenerateCountry()}>Start</Button> <br></br>
                 
             <Container className='container-practice'>
             <Row className="justify-content-md-center">
                 <Col>
-                    <img className='' src={flag}></img>
+                    <img className='' src={random1}></img>
                 </Col>
                 <Col>
-                    <img className='' src={fakeFlag1}></img>
+                    <img className='' src={random2}></img>
                 </Col>
                 <Col>
-                    <img className='' src={fakeFlag2}></img>
+                    <img className='' src={random3}></img>
                 </Col>
             </Row>
             </Container>
