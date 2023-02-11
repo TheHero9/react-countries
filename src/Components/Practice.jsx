@@ -84,11 +84,12 @@ const Practice = function(){
         setCountry(randomCountry())
         setFake1(randomCountry())
         setFake2(randomCountry())
-
-       
-
     }
 
+
+    function SubmitAnswer(e){
+        console.log(e)
+    }
 
 
     return(
@@ -105,13 +106,13 @@ const Practice = function(){
             <Container className='container-practice'>
             <Row className="justify-content-md-center">
                 <Col>
-                    <img className='' src={random1}></img>
+                    <img onClick={e => SubmitAnswer(e)} src={random1}></img>
                 </Col>
                 <Col>
-                    <img className='' src={random2}></img>
+                    <img  src={random2}></img>
                 </Col>
                 <Col>
-                    <img className='' src={random3}></img>
+                    <img src={random3}></img>
                 </Col>
             </Row>
             </Container>
