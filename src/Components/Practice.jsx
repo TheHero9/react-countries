@@ -10,6 +10,7 @@ var randomCountry = require('random-country');
 const Practice = function(){
     const [country, setCountry] = useState(null)
     const [score, setScore] = useState(0)
+    const [record, setRecord] = useState(0)
     
     const [flag, setFlag] = useState('');
     const [name, setName] = useState('');
@@ -18,6 +19,8 @@ const Practice = function(){
     const [fakeFlag1, setFakeFlag1] = useState(null)
     const [fake2, setFake2] = useState(null)
     const [fakeFlag2, setFakeFlag2] = useState(null)
+
+    const [hovered, setHovered] =useState(false)
 
 
     useEffect(() => {
@@ -51,6 +54,7 @@ const Practice = function(){
 
 
      const [arrayFlags, setArrayFlags] = useState([])
+     
      const [random1, setRandom1] = useState('')
      const [random2, setRandom2] = useState('')
      const [random3, setRandom3] = useState('')
@@ -59,14 +63,14 @@ const Practice = function(){
         setArrayFlags([])
 
         arrayFlags.push(flag, fakeFlag1, fakeFlag2)
-
+        
         Randomize(arrayFlags)
         setRandom1(arrayFlags[0])
         setRandom2(arrayFlags[1])
         setRandom3(arrayFlags[2])
         
 
-        }, [flag])
+        }, [flag, fakeFlag1, fakeFlag2])
 
     
     function Randomize(array){
@@ -78,9 +82,13 @@ const Practice = function(){
         }
     }
 
+    // function Clear(){
+    //     setRandom1(null)
+    //     setRandom2(null)
+    //     setRandom3("bg")
+    // }
 
     function GenerateCountry(){
-
         setCountry(randomCountry())
         setFake1(randomCountry())
         setFake2(randomCountry())
@@ -88,7 +96,16 @@ const Practice = function(){
 
 
     function SubmitAnswer(e){
-        console.log(e)
+        if(e.target.src === flag) {
+            setScore(e => e+1)
+            GenerateCountry()
+        } else{
+            if(score > record) setRecord(score)
+            setScore(0)
+            document.querySelectorAll('img').src = "bg"
+
+        }
+
     }
 
 
@@ -96,7 +113,9 @@ const Practice = function(){
         <>
             <div className="practice">
                 <h1>Practice Section</h1>
+                
                 <h3>Score: {score}</h3>
+                <h5>Highest: {record}</h5>
                 <h3>Flag of {name}:</h3>
 
               
@@ -104,17 +123,18 @@ const Practice = function(){
                 <Button onClick={(e) => GenerateCountry()}>Start</Button> <br></br>
                 
             <Container className='container-practice'>
-            <Row className="justify-content-md-center">
-                <Col>
-                    <img onClick={e => SubmitAnswer(e)} src={random1}></img>
-                </Col>
-                <Col>
-                    <img  src={random2}></img>
-                </Col>
-                <Col>
-                    <img src={random3}></img>
-                </Col>
-            </Row>
+                <Row className="justify-content-md-center">
+
+                    <Col>
+                        <img onClick={e => SubmitAnswer(e)} src={random1}></img>
+                    </Col>
+                    <Col>
+                        <img onClick={e => SubmitAnswer(e)} src={random2}></img>
+                    </Col>
+                    <Col>
+                        <img onClick={e => SubmitAnswer(e)} src={random3}></img>
+                    </Col>
+             </Row>
             </Container>
             </div>
         </>
