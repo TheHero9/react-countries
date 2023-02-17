@@ -11,6 +11,7 @@ const Practice = function(){
     const [country, setCountry] = useState(null)
     const [score, setScore] = useState(0)
     const [record, setRecord] = useState(0)
+    const [lastScore, SetLastScore] = useState(0)
     
     const [flag, setFlag] = useState('');
     const [name, setName] = useState('');
@@ -82,11 +83,12 @@ const Practice = function(){
         }
     }
 
-    // function Clear(){
-    //     setRandom1(null)
-    //     setRandom2(null)
-    //     setRandom3("bg")
-    // }
+    function Clear(){
+        setRandom1('')
+        setRandom2('')
+        setRandom3('')
+        setName(null)
+    }
 
     function GenerateCountry(){
         setCountry(randomCountry())
@@ -102,7 +104,7 @@ const Practice = function(){
         } else{
             if(score > record) setRecord(score)
             setScore(0)
-            document.querySelectorAll('img').src = "bg"
+            Clear()
 
         }
 
@@ -112,11 +114,13 @@ const Practice = function(){
     return(
         <>
             <div className="practice">
-                <h1>Practice Section</h1>
+                <h1 style={{textDecoration:  "underline"}}>Practice Section</h1>
                 
                 <h3>Score: {score}</h3>
+                <h3>Last score: {lastScore}</h3>
                 <h5>Highest: {record}</h5>
-                <h3>Flag of {name}:</h3>
+                
+                <h3>Flag of: {name}</h3>
 
               
 
